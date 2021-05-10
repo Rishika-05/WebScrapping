@@ -21,17 +21,16 @@ label_compare.grid(column=0, row=0,padx=70, pady=50,columnspan=3)
 label_0.grid(column=0, row=1, columnspan=3)
 search_bar.grid(column=0, row=2,columnspan=3,pady=10,padx=30)
 
+ns_logo = ImageTk.PhotoImage(Image.open("WebScrapping/Images/web_ns.png"))
+label_ns = Label(image=ns_logo)
 
+ms_logo = ImageTk.PhotoImage(Image.open("WebScrapping/Images/web_ms.png"))
+label_ms = Label(image=ms_logo)
 
 
 def on_click():
-    ns_logo = ImageTk.PhotoImage(Image.open("WebScrapping/Images/web_ns.png"))
-    label_ns = Label(image=ns_logo)
-    label_ns.grid(column=0, row=4, sticky="E", padx="30")
-
-    ms_logo = ImageTk.PhotoImage(Image.open("WebScrapping/Images/web_ms.png"))
-    label_ms = Label(image=ms_logo)
-    label_ms.grid(column=2, row=4, sticky="W", padx="30")
+    label_ns.grid(column=0, row=4, padx="30")
+    label_ms.grid(column=2, row=4, padx="30")
     
     search_text = search_bar.get()
     url = "https://www.google.co.in/search?q="+search_text
@@ -64,9 +63,9 @@ def on_click():
         link_btn2.grid(column=2, row=8, pady=10, padx=40)
     else:
         f=0
-        title_label = Label(root3, text="No Results",fg="#a9a9a9")
-        link_label = Label(root3, text="Ooops (Search Failed)!!",fg="#a9a9a9")
-        des_label = Label(root3, text="Please check the text you entered, and try again.",fg="#a9a9a9")
+        title_label = Label(root3, text="Ooops (Search Failed)!!",fg="#415662")
+        link_label = Label(root3, text="No Results",fg="#415662")
+        des_label = Label(root3, text="Try another keyword..",fg="#415662")
     
     title_label.config(font=(32))
     link_label.config(font=(24))

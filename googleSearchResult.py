@@ -41,7 +41,7 @@ def on_click():
     if flag and anchors.find('h3'):
         title_label = Label(root0, text=anchors.find('h3').get_text(), fg='blue')
         link_label = Label(root0, text=anchors.find('cite').get_text(),fg='purple')
-        des_label = Label(root0, text=soup.find('div',class_='IsZvec').get_text(),fg='#888888', wraplength=900, justify="left")
+        des_label = Label(root0, text=soup.find('div',class_='IsZvec').get_text(),fg='#888888', wraplength=950, justify="left")
         f=1;
         link_button = Button(root0, text="Go to page", command=open_link,bg="#dddddd", borderwidth=2)
         link_button.config(font=(14))

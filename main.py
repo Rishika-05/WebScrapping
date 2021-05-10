@@ -14,7 +14,7 @@ l_logo.grid(row=0,column=0, columnspan=3, padx=20)
 
 gs_logo = ImageTk.PhotoImage(Image.open("WebScrapping/Images/web_gs.png"))
 label_gs = Label(image=gs_logo)
-label_gs.grid(column=1, row=3)
+label_gs.grid(column=1, row=3, pady=10)
 
 
 def open_gs():
