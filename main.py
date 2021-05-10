@@ -58,6 +58,7 @@ ms_btn.grid(column=2, row=6, pady=5)
 
 def open_comp():
     os.system('python WebScrapping/compare.py')
+    root.quit()
 
 compare_btn = Button(root, text="Compare", command=open_comp, bg='#dddddd', borderwidth=2)
 compare_btn.config(font=(12))

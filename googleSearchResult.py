@@ -5,16 +5,16 @@ from bs4 import BeautifulSoup
 import webbrowser
 
 
-root = Tk()
-root.title("Google First Search Result")
-root.call('wm', 'iconphoto', root._w, PhotoImage(file='WebScrapping/Images/google.png'))
+root0 = Tk()
+root0.title("Google First Search Result")
+root0.call('wm', 'iconphoto', root0._w, PhotoImage(file='WebScrapping/Images/google.png'))
 
 global f
 
 search_logo = ImageTk.PhotoImage(Image.open("WebScrapping/Images/googlefull.png"))
 label_search = Label(image=search_logo)
 
-search_bar = Entry(root, width=50, borderwidth=2, font=(18))
+search_bar = Entry(root0, width=50, borderwidth=2, font=(18))
 
 label_search.grid(column=1, row=0,padx=80, pady=60,columnspan=2)
 search_bar.grid(column=1, row=2,columnspan=2,pady=10)
@@ -39,18 +39,18 @@ def on_click():
         
         
     if flag and anchors.find('h3'):
-        title_label = Label(root, text=anchors.find('h3').get_text(), fg='blue')
-        link_label = Label(root, text=anchors.find('cite').get_text(),fg='purple')
-        des_label = Label(root, text=soup.find('div',class_='IsZvec').get_text(),fg='#888888', wraplength=900, justify="left")
+        title_label = Label(root0, text=anchors.find('h3').get_text(), fg='blue')
+        link_label = Label(root0, text=anchors.find('cite').get_text(),fg='purple')
+        des_label = Label(root0, text=soup.find('div',class_='IsZvec').get_text(),fg='#888888', wraplength=900, justify="left")
         f=1;
-        link_button = Button(root, text="Go to page", command=open_link,bg="#dddddd", borderwidth=2)
+        link_button = Button(root0, text="Go to page", command=open_link,bg="#dddddd", borderwidth=2)
         link_button.config(font=(14))
         link_button.grid(column=1, row=7, pady=10,sticky="E", padx=40)
     else:
         f=0
-        title_label = Label(root, text="No Results",fg="#a9a9a9")
-        link_label = Label(root, text="Ooops (Search Failed)!!",fg="#a9a9a9")
-        des_label = Label(root, text="Please check the text you entered, and try again.",fg="#a9a9a9")
+        title_label = Label(root0, text="No Results",fg="#a9a9a9")
+        link_label = Label(root0, text="Ooops (Search Failed)!!",fg="#a9a9a9")
+        des_label = Label(root0, text="Please check the text you entered, and try again.",fg="#a9a9a9")
     
     title_label.config(font=(32))
     link_label.config(font=(24))
@@ -71,24 +71,24 @@ def on_click():
         else:
             on_click()
 
-    my_button = Button(root, text="Google Search", command=label_del, bg='#dddddd', borderwidth=2)  
+    my_button = Button(root0, text="Google Search", command=label_del, bg='#dddddd', borderwidth=2)  
     my_button.config(font=(15)) 
     my_button.grid(column=1, row=3,padx=40, pady=20,  sticky="E")
     
-    my_button = Button(root, text="I'm Feeling Lucky", command=label_del, bg='#dddddd', borderwidth=2)  
+    my_button = Button(root0, text="I'm Feeling Lucky", command=label_del, bg='#dddddd', borderwidth=2)  
     my_button.config(font=(15)) 
     my_button.grid(column=2, row=3,padx=40, pady=20,  sticky="W")
 
-    exit_btn = Button(root, text="Exit", command=root.quit, padx=20, bg='#dddddd', borderwidth=2)
+    exit_btn = Button(root0, text="Exit", command=root0.quit, padx=20, bg='#dddddd', borderwidth=2)
     exit_btn.config(font=(14))
     exit_btn.grid(column=2, row=7, pady=10,sticky="W", padx=40)
 
-my_button = Button(root, text="Google Search", command=on_click, bg='#dddddd', borderwidth=2)  
+my_button = Button(root0, text="Google Search", command=on_click, bg='#dddddd', borderwidth=2)  
 my_button.config(font=(15)) 
 my_button.grid(column=1, row=3, pady=20,padx=40,  sticky="E")
     
-my_button = Button(root, text="I'm Feeling Lucky", command=on_click, bg='#dddddd', borderwidth=2)  
+my_button = Button(root0, text="I'm Feeling Lucky", command=on_click, bg='#dddddd', borderwidth=2)  
 my_button.config(font=(15)) 
 my_button.grid(column=2, row=3, pady=20,padx=40,  sticky="W")
 
-root.mainloop()
+root0.mainloop()
