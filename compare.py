@@ -6,7 +6,7 @@ import webbrowser
 
 
 root3 = Tk()
-root3.title("Naukri.com Search Result")
+root3.title("Compare ")
 root3.call('wm', 'iconphoto', root3._w, PhotoImage(file='WebScrapping/Images/ieee.png'))
 
 compare_logo = ImageTk.PhotoImage(Image.open("WebScrapping/Images/images.png"))
@@ -33,20 +33,18 @@ def on_click():
     label_ms.grid(column=2, row=4, padx="30")
     
     search_text = search_bar.get()
-    url = "https://www.google.co.in/search?q="+search_text
+    url1 = "https://www.google.co.in/search?q="+search_text
+    url2 = "https://www.google.co.in/search?q="+search_text
     headers = {"user-agent" : 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36'}
-    req = requests.get(url, headers=headers)
-    soup = BeautifulSoup(req.content, "html.parser")
-    flag = True
-    anchors = soup.find('div', class_="g")
+    req1 = requests.get(url1, headers=headers)
+    req2 = requests.get(url2, headers=headers)
+    soup1 = BeautifulSoup(req1.content, "html.parser")
+    soup2 = BeautifulSoup(req2.content, "html.parser")
+    flag1 = True
+    flag2 = True
+    
+    # anchors = soup.find('div', class_="g")
     # print(anchors.prettify)
-    if anchors:
-        link = anchors.find('a')['href']
-    else:
-        flag = False
-
-    def open_link():
-        webbrowser.open_new(link)
         
         
     if flag and anchors.find('h3'):
@@ -97,7 +95,7 @@ def on_click():
             on_click()
             
     my_button = Button(root3, text="Comapare", command=label_del, bg='#dddddd', borderwidth=2)  
-    my_button.config(font=(15)) 
+    my_button.config(font=(14)) 
     my_button.grid(column=1, row=3, pady=20,padx=40)
 
 
@@ -107,7 +105,7 @@ def on_click():
 
 
 my_button = Button(root3, text="Comapare", command=on_click, bg='#dddddd', borderwidth=2)  
-my_button.config(font=(15)) 
+my_button.config(font=(14)) 
 my_button.grid(column=1, row=3, pady=20,padx=40)
 
 

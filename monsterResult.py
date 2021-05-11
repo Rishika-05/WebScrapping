@@ -19,65 +19,101 @@ search_bar.grid(column=0, row=2,columnspan=3,pady=10)
 
 def on_click():
     search_text = search_bar.get()
-    url = "https://www.google.co.in/search?q="+search_text
+    url = "https://www.monsterindia.com/srp/results?query="+search_text
     headers = {"user-agent" : 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36'}
     req = requests.get(url, headers=headers)
     soup = BeautifulSoup(req.content, "html.parser")
-    flag = True
-    anchors = soup.find('div', class_="g")
-    # print(anchors.prettify)
-    if anchors:
-        link = anchors.find('a')['href']
+    print(soup)
+    f = True
+    if soup.find('div', class_='job-title'):
+        if soup.find('h3', class_='medium'):
+            title= soup.find('h3', class_='medium').get_text()
+        else:
+            title=' No job available '
+        if soup.find('span', class_='loc'):
+            dura= soup.find('span', class_='loc').get_text()
+        else:
+            dura=" N/A "
+        if soup.find('span', class_='SalarySnb'):
+            sal=soup.find('span', class_='SalarySnb').get_text()
+        else:
+            sal=' N/A '
+        if soup.find('span', class_='loc'):
+            loc=soup.find('span', class_='loc').get_text()
+        else:
+            loc=" N/A "
+        if soup.find('p', class_='job-descrip'):
+            des=soup.find('p', class_='job-descrip').get_text()
+        else:
+            des=' N/A '
+        if soup.find('p',class_='descrip-skills'):
+            skill=soup.find('p',class_='descrip-skills').get_text()
+        else:
+            skill=' N/A '  
+        link = soup.find('a', target='_blank').get('href')
     else:
-        flag = False
-
+        f = False
+        title= ' No job available '
+        des=' N/A '
+        sal= ' N/A '
+        loc= ' N/A '
+        dura= ' N/A '
+        skill= ' N/A '
+        
+        
+        
     def open_link():
         webbrowser.open_new(link)
         
-        
-    if flag and anchors.find('h3'):
-        title_label = Label(root2, text=anchors.find('h3').get_text(), fg='blue')
-        link_label = Label(root2, text=anchors.find('cite').get_text(),fg='purple')
-        des_label = Label(root2, text=soup.find('div',class_='IsZvec').get_text(),fg='#888888', wraplength=900, justify="left")
-        f=1;
-        link_button = Button(root2, text="Go to page", command=open_link,bg="#dddddd", borderwidth=2)
-        link_button.config(font=(14))
-        link_button.grid(column=1, row=7, pady=10, padx=40)
-    else:
-        f=0
-        title_label = Label(root2, text="No Results",fg="#a9a9a9")
-        link_label = Label(root2, text="Ooops (Search Failed)!!",fg="#a9a9a9")
-        des_label = Label(root2, text="Please check the text you entered, and try again.",fg="#a9a9a9")
-    
-    title_label.config(font=(32))
-    link_label.config(font=(24))
-    des_label.config(font=(16))
-
-    
-    title_label.grid(column=1, row=4, pady=0, padx=10)
-    link_label.grid(column=1, row=5, pady=0, padx=10)
-    des_label.grid(column=1, row=6, pady=0, padx=10)
+    title_label = Label(root2, text=title)
+    des_label = Label(root2, text='Description :'+des)
+    salary_label= Label(root2, text='Salary : '+sal )
+    loca_label=Label(root2, text='Location : '+ loc )
+    durat_label= Label(root2, text='Experience : '+dura )
+    skill_label= Label(root2, text='Required skills : '+skill)    
+    title_label.config(font=(14))
+    des_label.config(font=(10))
+    salary_label.config(font=(12))
+    loca_label.config(font=(12))
+    durat_label.config(font=(12))
+    skill_label.config(font=(10))
+    title_label.grid(column=1, row=5, pady=0)
+    des_label.grid(column=1, row=6, pady=0)
+    salary_label.grid(column=1, row=7, pady=0)
+    loca_label.grid(column=1, row=8, pady=0)
+    durat_label.grid(column=1, row=9, pady=0)
+    skill_label.grid(column=1, row=10, pady=0)
     
     def label_del():
         title_label.grid_forget()
-        link_label.grid_forget()
         des_label.grid_forget()
         exit_btn.grid_forget()
-        if f==1:
+        salary_label.grid_forget()
+        loca_label.grid_forget()
+        durat_label.grid_forget()
+        skill_label.grid_forget()
+        if f:
             link_button.grid_forget()
         else:
-            on_click()
+            exit_btn.grid_forget()
+        on_click()
             
     my_button = Button(root2, text="Search", command=label_del, bg='#dddddd', borderwidth=2)  
-    my_button.config(font=(15)) 
+    my_button.config(font=(14)) 
     my_button.grid(column=1, row=3, pady=20,padx=40)
 
     exit_btn = Button(root2, text="Exit", command=root2.quit, padx=20, bg='#dddddd', borderwidth=2)
     exit_btn.config(font=(14))
-    exit_btn.grid(column=1, row=8, pady=10, padx=40)
+    if f:
+        link_button = Button(root2, text="Go to page", command=open_link,bg="#dddddd", borderwidth=2)
+        link_button.config(font=(14))
+        link_button.grid(column=1, row=11, pady=10, padx=40)
+        exit_btn.grid(column=1, row=12, pady=10, padx=40)
+    else:
+        exit_btn.grid(column=1, row=12, pady=10, padx=40)
 
 my_button = Button(root2, text="Search", command=on_click, bg='#dddddd', borderwidth=2)  
-my_button.config(font=(15)) 
+my_button.config(font=(14)) 
 my_button.grid(column=1, row=3, pady=20,padx=40)
 
 

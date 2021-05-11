@@ -48,9 +48,9 @@ def on_click():
         link_button.grid(column=1, row=7, pady=10,sticky="E", padx=40)
     else:
         f=0
-        title_label = Label(root0, text="No Results",fg="#a9a9a9")
-        link_label = Label(root0, text="Ooops (Search Failed)!!",fg="#a9a9a9")
-        des_label = Label(root0, text="Please check the text you entered, and try again.",fg="#a9a9a9")
+        title_label = Label(root0, text="Ooops (Search Failed)!!",fg="#a9a9a9")
+        link_label = Label(root0, text="No Results",fg="#a9a9a9")
+        des_label = Label(root0, text="Try another keyword..",fg="#a9a9a9")
     
     title_label.config(font=(32))
     link_label.config(font=(24))
