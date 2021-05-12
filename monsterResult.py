@@ -3,6 +3,8 @@ from PIL import ImageTk, Image
 import requests
 from bs4 import BeautifulSoup
 import webbrowser
+from selenium import webdriver
+import time
 
 
 root2 = Tk()
@@ -20,10 +22,13 @@ search_bar.grid(column=0, row=2,columnspan=3,pady=10)
 def on_click():
     search_text = search_bar.get()
     url = "https://www.monsterindia.com/srp/results?query="+search_text
-    headers = {"user-agent" : 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36'}
-    req = requests.get(url, headers=headers)
-    soup = BeautifulSoup(req.content, "html.parser")
-    print(soup)
+    # headers = {"user-agent" : 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36'}
+    driver = webdriver.Chrome("C:\\Users\\Rishika Raj\\Downloads\\chromedriver_win32\\chromedriver.exe")
+    driver.get(url)
+    time.sleep(10)
+    soup = BeautifulSoup(driver.page_source, "html5lib")
+    print(soup.prettify())
+    driver.quit()
     f = True
     if soup.find('div', class_='job-title'):
         if soup.find('h3', class_='medium'):
