@@ -9,9 +9,9 @@ import time
 
 root2 = Tk()
 root2.title("Monster.com Search Result")
-root2.call('wm', 'iconphoto', root2._w, PhotoImage(file='WebScrapping/Images/monster.png'))
+root2.call('wm', 'iconphoto', root2._w, PhotoImage(file='Images/monster.png'))
 
-monster_logo = ImageTk.PhotoImage(Image.open("WebScrapping/Images/monsterfull.png"))
+monster_logo = ImageTk.PhotoImage(Image.open("Images/monsterfull.png"))
 label_moster = Label(image=monster_logo)
 
 search_bar = Entry(root2, width=50, borderwidth=2, font=(18))

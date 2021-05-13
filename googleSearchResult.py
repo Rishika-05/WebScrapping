@@ -7,11 +7,11 @@ import webbrowser
 
 root0 = Tk()
 root0.title("Google First Search Result")
-root0.call('wm', 'iconphoto', root0._w, PhotoImage(file='WebScrapping/Images/google.png'))
+root0.call('wm', 'iconphoto', root0._w, PhotoImage(file='Images/google.png'))
 
 global f
 
-search_logo = ImageTk.PhotoImage(Image.open("WebScrapping/Images/googlefull.png"))
+search_logo = ImageTk.PhotoImage(Image.open("Images/googlefull.png"))
 label_search = Label(image=search_logo)
 
 search_bar = Entry(root0, width=50, borderwidth=2, font=(18))

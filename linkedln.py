@@ -10,14 +10,14 @@ from selenium.webdriver.common.action_chains import ActionChains
 from warnings import warn
 
 
-root2 = Tk()
-root2.title("Monster.com Search Result")
-root2.call('wm', 'iconphoto', root2._w, PhotoImage(file='WebScrapping/Images/monster.png'))
+root3 = Tk()
+root3.title("LinkedIn Search Result")
+root3.call('wm', 'iconphoto', root3._w, PhotoImage(file='Images/link.png'))
 
-monster_logo = ImageTk.PhotoImage(Image.open("WebScrapping/Images/monsterfull.png"))
+monster_logo = ImageTk.PhotoImage(Image.open("Images/linkfull.png"))
 label_moster = Label(image=monster_logo)
 
-search_bar = Entry(root2, width=50, borderwidth=2, font=(18))
+search_bar = Entry(root3, width=50, borderwidth=2, font=(18))
 
 label_moster.grid(column=0, row=0,padx=80, pady=60,columnspan=3)
 search_bar.grid(column=0, row=2,columnspan=3,pady=10)
@@ -48,12 +48,12 @@ def on_click():
         #     dura= Exp.find('span',class_='ellipsis fleft fs12 lh16').get_text()
         # else:
         #     dura=" N/A "
-        if job_elem.find('li',class_='fleft grey-text br2 placeHolderLi salary'):
-            Sal = job_elem.find('li',class_='fleft grey-text br2 placeHolderLi salary')
+        if job.find('li',class_='fleft grey-text br2 placeHolderLi salary'):
+            Sal = job.find('li',class_='fleft grey-text br2 placeHolderLi salary')
             sal=Sal.find('span',class_='ellipsis fleft fs12 lh16').get_text()
         else:
             sal=' N/A '
-        job_xpath = '/html/body/main/div/section/ul/li[{}]/img'.format(x)
+        job_xpath = '/html/body/main/div/section/ul/li[{}]/img'.format()
         driver.find_element_by_xpath(job_xpath).click()
         time.sleep(3)
         type_xpath = '/html/body/main/section/div[2]/section[2]/ul/li[2]'
@@ -83,13 +83,13 @@ def on_click():
         skill= ' N/A '
         
         
-    title_label = Label(root1, text=title)
-    des_label = Label(root1, text='Company :'+comp)
-    rat_label = Label(root1, text='Post date : '+rat)
-    salary_label= Label(root1, text='Salary : '+sal )
-    loca_label=Label(root1, text='Location : '+ loc )
-    durat_label= Label(root1, text='Type : '+dura )
-    skill_label= Label(root1, text='Required skills : '+skill)    
+    title_label = Label(root3, text=title)
+    des_label = Label(root3, text='Company :'+comp)
+    rat_label = Label(root3, text='Post date : '+rat)
+    salary_label= Label(root3, text='Salary : '+sal )
+    loca_label=Label(root3, text='Location : '+ loc )
+    durat_label= Label(root3, text='Type : '+dura )
+    skill_label= Label(root3, text='Required skills : '+skill)    
     title_label.config(font=(14))
     des_label.config(font=(10))
     rat_label.config(font=(10))
@@ -123,23 +123,23 @@ def on_click():
     def open_link():
         webbrowser.open_new(link)
             
-    my_button = Button(root1, text="Search", command=label_del, bg='#dddddd', borderwidth=2)  
+    my_button = Button(root3, text="Search", command=label_del, bg='#dddddd', borderwidth=2)  
     my_button.config(font=(14)) 
     my_button.grid(column=1, row=3, pady=12,padx=40)
 
-    exit_btn = Button(root1, text="Exit", command=root1.quit, padx=20, bg='#dddddd', borderwidth=2)
+    exit_btn = Button(root3, text="Exit", command=root3.quit, padx=20, bg='#dddddd', borderwidth=2)
     exit_btn.config(font=(14))
     if f:
-        link_button = Button(root1, text="Go to page", command=open_link,bg="#dddddd", borderwidth=2)
+        link_button = Button(root3, text="Go to page", command=open_link,bg="#dddddd", borderwidth=2)
         link_button.config(font=(14))
         link_button.grid(column=1, row=11, pady=10, padx=40)
         exit_btn.grid(column=1, row=12, pady=5, padx=40)
     else:
         exit_btn.grid(column=1, row=12, pady=5, padx=40)
 
-my_button = Button(root2, text="Search", command=on_click, bg='#dddddd', borderwidth=2)  
+my_button = Button(root3, text="Search", command=on_click, bg='#dddddd', borderwidth=2)  
 my_button.config(font=(14)) 
 my_button.grid(column=1, row=3, pady=20,padx=40)
 
 
-root2.mainloop()
+root3.mainloop()

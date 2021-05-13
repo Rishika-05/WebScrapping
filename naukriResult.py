@@ -8,9 +8,9 @@ import time
 
 root1 = Tk()
 root1.title("Naukri.com Search Result")
-root1.call('wm', 'iconphoto', root1._w, PhotoImage(file='WebScrapping/Images/naukri.png'))
+root1.call('wm', 'iconphoto', root1._w, PhotoImage(file='Images/naukri.png'))
 
-naukri_logo = ImageTk.PhotoImage(Image.open("WebScrapping/Images/naukrifull.jpg"))
+naukri_logo = ImageTk.PhotoImage(Image.open("Images/naukrifull.jpg"))
 label_naukri = Label(image=naukri_logo)
 
 search_bar = Entry(root1, width=50, borderwidth=2, font=(18))
